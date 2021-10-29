@@ -9,18 +9,21 @@
 </head>
 <body>
 
-    <!-- Button to start quiz -->
-    <div class = "start-btn"><button class>Start Quiz</button></div>
-
     <!-- Quiz Box -->
     <div class = "quizbox">
-        <h2 class = "question">Question</h2>
-        <button class = "btn">Answer 1</button>
-        <button class = "btn">Answer 2</button>
-        <button class = "btn">Answer 3</button>
-        <button class = "btn">Answer 4</button>
-        <button class = "next-btn hidden">Next Question</button>
-        <button class = "end-btn hidden">End</button>
+        <div id = "questionbox" class = "hide">
+            <div id = "question">Question</div>
+            <div id = "answer-btns" class = "btn-style">
+                <button class = "btn">Answer 1</button>
+                <button class = "btn">Answer 2</button>
+                <button class = "btn">Answer 3</button>
+                <button class = "btn">Answer 4</button>        
+            </div>
+        </div>
+        <div class = "controls">
+            <button id = "start-btn" class = "start-btn btn">Start Quiz</button>
+            <button id = "next-btn" class = "next-btn btn hide">Next Question</button>
+        </div>
     </div>
 
     <!--JS link-->
