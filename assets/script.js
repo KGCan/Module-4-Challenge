@@ -78,39 +78,48 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    question: 'What is the {} symbol called?',
+    question: 'What is JavaScript?',
     answers: [
-      { text: 'Curly Brackets', correct: true },
-      { text: 'Parenthesis', correct: false},
-      { text: 'Quotations', correct: false },
-      { text: 'Straight Brackets', correct: false},
+      { text: 'A text-based programming language used to make web pages interactive', correct: true },
+      { text: 'A text-based programming language used to give structure to web pages', correct: false},
+      { text: 'A text-based programming language used to style web pages', correct: false },
+      { text: 'A coffee order at Dutch Bros', correct: false},
     ]
   },
   {
-    question: 'What is the {} symbol called?',
+    question: 'Inside which HTML element do we put the JavaScript?',
     answers: [
-      { text: 'Curly Brackets', correct: true },
-      { text: 'Parenthesis', correct: false},
-      { text: 'Quotations', correct: false },
-      { text: 'Straight Brackets', correct: false},
+      { text: '<js>', correct: false },
+      { text: '<scripting>', correct: false},
+      { text: '<script>', correct: true },
+      { text: '<javascript', correct: false},
     ]
   },
   {
-    question: 'What is the {} symbol called?',
+    question: 'How do you write "Hello World" in an alert box using JavaScript?',
     answers: [
-      { text: 'Curly Brackets', correct: true },
-      { text: 'Parenthesis', correct: false},
-      { text: 'Quotations', correct: false },
-      { text: 'Straight Brackets', correct: false},
+      { text: 'alertBox ("Hello World");', correct: false },
+      { text: 'msgBox("Hello World");', correct: false},
+      { text: 'msg("Hello World");', correct: false },
+      { text: 'alert("Hello World");', correct: true},
     ]
   },
   {
-    question: 'What is the {} symbol called?',
+    question: 'How do you create a function in JavaScript?',
     answers: [
-      { text: 'Curly Brackets', correct: true },
-      { text: 'Parenthesis', correct: false},
-      { text: 'Quotations', correct: false },
-      { text: 'Straight Brackets', correct: false},
+      { text: 'function:myFunction()', correct: false },
+      { text: 'function myFunction()', correct: true},
+      { text: 'function = myFunction()', correct: false },
+      { text: 'function/myFunction()', correct: false},
+    ]
+  },
+  {
+    question: 'How can you add a comment in JavaScript?',
+    answers: [
+      { text: '<!--This is a comment-->', correct: false },
+      { text: '?This is a comment', correct: false},
+      { text: '//This is a comment', correct: true },
+      { text: '.This is a comment', correct: false},
     ]
   }
 ]
