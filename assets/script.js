@@ -78,16 +78,42 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    question: 'Question 1?',
+    question: 'What is the {} symbol called?',
     answers: [
-      { text: 'correct', correct: true },
-      { text: 'incorrect', correct: false},
-      { text: 'incorrect2', correct: false },
-      { text: 'incorrect3', correct: false},
+      { text: 'Curly Brackets', correct: true },
+      { text: 'Parenthesis', correct: false},
+      { text: 'Quotations', correct: false },
+      { text: 'Straight Brackets', correct: false},
+    ]
+  },
+  {
+    question: 'What is the {} symbol called?',
+    answers: [
+      { text: 'Curly Brackets', correct: true },
+      { text: 'Parenthesis', correct: false},
+      { text: 'Quotations', correct: false },
+      { text: 'Straight Brackets', correct: false},
+    ]
+  },
+  {
+    question: 'What is the {} symbol called?',
+    answers: [
+      { text: 'Curly Brackets', correct: true },
+      { text: 'Parenthesis', correct: false},
+      { text: 'Quotations', correct: false },
+      { text: 'Straight Brackets', correct: false},
+    ]
+  },
+  {
+    question: 'What is the {} symbol called?',
+    answers: [
+      { text: 'Curly Brackets', correct: true },
+      { text: 'Parenthesis', correct: false},
+      { text: 'Quotations', correct: false },
+      { text: 'Straight Brackets', correct: false},
     ]
   }
 ]
-
 
 //Quiz Timer//
 //var count = 15;
