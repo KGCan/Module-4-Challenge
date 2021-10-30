@@ -5,7 +5,7 @@
 
 :root {
     --base-color: rgb(40, 125, 158);
-    --wrong-answer: rgb(255, 115, 115);
+    --incorrect-answer: rgb(255, 115, 115);
     --correct-answer: rgb(100, 185, 100);
 }
 
@@ -45,4 +45,28 @@ body {
 
 .btn:hover {
     border-color: rgb(255, 0, 212);
+}
+
+.btn.correct {
+    background-color: var(--correct-answer);
+}
+
+.btn.incorrect {
+    background-color: var(--incorrect-answer);
+}
+
+.start-btn, .next-btn {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
 }
