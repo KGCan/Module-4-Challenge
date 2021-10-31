@@ -1,152 +1,254 @@
-const startButton = document.getElementById ('start-btn')
-const nextButton = document.getElementById ('next-btn')
-const questionBoxElement =document.getElementById ('questionbox')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-btns')
+ //Quiz Questions
+ const questions = [
+  {
+      question: "Inside which HTML element do we put the JavaScript?",
+      choices: ["a. <js>", "b. <javascript>", "c. <scripting>", "d. <script>"],
+      answer: "d. <script>"
+  },
+  {
+      question: "String values must be enclosed within _____ when being assigned to variables.",
+      choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parenthesis"],
+      answer: "c. quotes"
+  },
+  {
+      question: "How do you create a function in JavaScript",
+      choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"],
+      answer: "b. function myFunction()"
+  },
+  {
+      question: "The first index of an array is ____.",
+      choices: ["a. 0", "b. 1", "c. 8", "d. any"],
+      answer: "a. 0"
+  },
+  {
+      question: "How do you add a comment in a JavaScript?",
+      choices: ["a. //This is a comment", "b. <!--This is a comment-->", "c. 'This is a comment", "d. * This is a comment *"],
+      answer: "a. //This is a comment"
+  },
+  {
+      question: "Which event occurs when the user clicks on an HTML element?",
+      choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"],
+      answer: "a. onclick"
+  }
+];
 
+//Timer elements
+var timer = document.getElementById("timer");
+var timeRemaining = document.getElementById("timeRemaining");
+var timesUp = document.getElementById("timesUp");
+//Start button elements
+var startDiv = document.getElementById("start");
+var startQuizBtn = document.getElementById("start-quiz-button");
+//Question elements
+var questionDiv = document.getElementById("questionDiv");
+var questionTitle = document.getElementById("questionTitle");
+//Answer variables
+var choiceA = document.getElementById("btn0");
+var choiceB = document.getElementById("btn1");
+var choiceC = document.getElementById("btn2");
+var choiceD = document.getElementById("btn3");
+var answerCheck = document.getElementById("answerCheck");
 var summary = document.getElementById("summary");
+
 var submitInitialBtn = document.getElementById("submitInitialBtn");
 var initialInput = document.getElementById("initialInput");
+var quizBox = document.getElementById("quiz");
+//High Scores
+var highScoreSection = document.getElementById("highScoreSection");
+var finalScore = document.getElementById("finalScore");
+var goBackBtn = document.getElementById("goBackBtn");
+var clearHighScoreBtn = document.getElementById("clearHighScoreBtn"); 
+var viewHighScore = document.getElementById("viewHighScore");
+var listOfHighScores = document.getElementById("listOfHighScores");
 
-let shuffledQuestions, currentQuestionIndex
+// define other variables
+var correctAns = 0;
+var questionNum = 0;
+var scoreResult;
+var questionIndex = 0;
 
-startButton.addEventListener('click', startQuiz)
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
-  setNextQuestion()
-})
-
+//Timer, begins when start button is clicked
+var totalTime = 101;
 function startQuiz() {
-  console.log('Started')
-  startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
-  currentQuestionIndex = 0
-  questionBoxElement.classList.remove('hide')
-  setNextQuestion()
+  questionIndex = 0;
+  totalTime = 100;
+  timeRemaining.textContent = totalTime;
+  initialInput.textContent = "";
+
+  startDiv.style.display = "none";
+  questionDiv.style.display = "block";
+  timer.style.display = "block";
+  timesUp.style.display = "none";
+
+  var startTimer = setInterval(function() {
+      totalTime--;
+      timeRemaining.textContent = totalTime;
+      if(totalTime <= 0) {
+          clearInterval(startTimer);
+          if (questionIndex < questions.length - 1) {
+              gameOver();
+          }
+      }
+  },1000);
+
+  showQuiz();
+};
+
+//User is presented with questions and answer choices
+function showQuiz() {
+  nextQuestion();
 }
 
-function setNextQuestion() {
-  resetQuestion()
-  showQuestion(shuffledQuestions[currentQuestionIndex])
+function nextQuestion() {
+  questionTitle.textContent = questions[questionIndex].question;
+  choiceA.textContent = questions[questionIndex].choices[0];
+  choiceB.textContent = questions[questionIndex].choices[1];
+  choiceC.textContent = questions[questionIndex].choices[2];
+  choiceD.textContent = questions[questionIndex].choices[3];
 }
 
-function showQuestion(question) {
-  questionElement.innerText = question.question
-  question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('btn')
-    if (answer.correct) {
-      button.dataset.correct = answer.correct
-    }
-    button.addEventListener('click', chooseAnswer)
-    answerButtonsElement.appendChild(button)
-  })
-}
+//After the user answers the question, show whether their answer is correct or incorrect
+function checkAnswer(answer) {
 
-function resetQuestion() {
-  clearStatusClass(document.body)
-  nextButton.classList.add('hide')
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  var lineBreak = document.getElementById("lineBreak");
+  lineBreak.style.display = "block";
+  answerCheck.style.display = "block";
+
+  if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
+      //If the answer is correct, add 1 to the final score
+      correctAns++;
+      // console.log(correctAns);
+      answerCheck.textContent = "Correct!";
+  } else {
+      // wrong answer, deduct 10 seconds from timer
+      totalTime -= 10;
+      timeRemaining.textContent = totalTime;
+      answerCheck.textContent = "Incorrect! The correct answer is: " + questions[questionIndex].answer;
+  }
+
+  questionIndex++;
+  //Repeat the quiz with the remaining questions 
+  if (questionIndex < questions.length) {
+      nextQuestion();
+  } else {
+      //If all of the questions have been completed, end the sequence
+      gameOver();
   }
 }
 
-function chooseAnswer (e) {
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
-  setStatusClass(document.body, correct)
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  if (shuffledQuestions.length > currentQuestionIndex +1) {nextButton.classList.remove('hide')
-} else {
-  startButton.innerText = 'Restart'
-  startButton.classList.remove('hide')
-}
+function chooseA() { checkAnswer(0); }
+
+function chooseB() { checkAnswer(1); }
+
+function chooseC() { checkAnswer(2); }
+
+function chooseD() { checkAnswer(3); }
+
+//Once all questions have been answered or when the timer reaches 0, quiz ends
+function gameOver() {
+  summary.style.display = "block";
+  questionDiv.style.display = "none";
+  startDiv.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "block";
+
+  // show final score
+  finalScore.textContent = correctAns;
 }
 
-function setStatusClass(element, correct) {
-  clearStatusClass(element)
-  if (correct) {
-    element.classList.add('correct');
-  } else {
-    element.classList.add('incorrect');
-  } 
-}
-
-function clearStatusClass(element) {
-  element.classList.remove('correct')
-  element.classList.remove('incorrect')
-}
-
+//User enters initials and high score is recorded in local storage
 function storeHighScores(event) {
   event.preventDefault();
+
+  //If the user does not enter their initials alert them to please enter
   if (initialInput.value === "") {
-    alert("Please enter your initials!");
-    return;
+      alert("Please enter your initials!");
+      return;
+  } 
+
+  startDiv.style.display = "none";
+  timer.style.display = "none";
+  timesUp.style.display = "none";
+  summary.style.display = "none";
+  highScoreSection.style.display = "block";   
+
+  //Record scores into local storage
+  var savedHighScores = localStorage.getItem("high scores");
+  var scoresArray;
+
+  if (savedHighScores === null) {
+      scoresArray = [];
+  } else {
+      scoresArray = JSON.parse(savedHighScores)
+  }
+
+  var userScore = {
+      initials: initialInput.value,
+      score: finalScore.textContent
+  };
+
+  console.log(userScore);
+  scoresArray.push(userScore);
+
+  //Stringify the array to record in local storage
+  var scoresArrayString = JSON.stringify(scoresArray);
+  window.localStorage.setItem("high scores", scoresArrayString);
+  
+  //Show current high scores
+  showHighScores();
+}
+
+//function to show current high scores
+var i = 0;
+function showHighScores() {
+
+  startDiv.style.display = "none";
+  timer.style.display = "none";
+  questionDiv.style.display = "none";
+  timesUp.style.display = "none";
+  summary.style.display = "none";
+  highScoreSection.style.display = "block";
+
+  var savedHighScores = localStorage.getItem("high scores");
+
+  //check to see if there are any high scores saved in the local storage
+  if (savedHighScores === null) {
+      return;
+  }
+  console.log(savedHighScores);
+
+  var storedHighScores = JSON.parse(savedHighScores);
+
+  for (; i < storedHighScores.length; i++) {
+      var eachNewHighScore = document.createElement("p");
+      eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
+      listOfHighScores.appendChild(eachNewHighScore);
   }
 }
 
-const questions = [
-  {
-    question: 'What is JavaScript?',
-    answers: [
-      { text: 'A text-based programming language used to make web pages interactive', correct: true },
-      { text: 'A text-based programming language used to give structure to web pages', correct: false},
-      { text: 'A text-based programming language used to style web pages', correct: false },
-      { text: 'A coffee order at Dutch Bros', correct: false},
-    ]
-  },
-  {
-    question: 'Inside which HTML element do we put the JavaScript?',
-    answers: [
-      { text: '<js>', correct: false },
-      { text: '<scripting>', correct: false},
-      { text: '<script>', correct: true },
-      { text: '<javascript', correct: false},
-    ]
-  },
-  {
-    question: 'How do you write "Hello World" in an alert box using JavaScript?',
-    answers: [
-      { text: 'alertBox ("Hello World");', correct: false },
-      { text: 'msgBox("Hello World");', correct: false},
-      { text: 'msg("Hello World");', correct: false },
-      { text: 'alert("Hello World");', correct: true},
-    ]
-  },
-  {
-    question: 'How do you create a function in JavaScript?',
-    answers: [
-      { text: 'function:myFunction()', correct: false },
-      { text: 'function myFunction()', correct: true},
-      { text: 'function = myFunction()', correct: false },
-      { text: 'function/myFunction()', correct: false},
-    ]
-  },
-  {
-    question: 'How can you add a comment in JavaScript?',
-    answers: [
-      { text: '<!--This is a comment-->', correct: false },
-      { text: '?This is a comment', correct: false},
-      { text: '//This is a comment', correct: true },
-      { text: '.This is a comment', correct: false},
-    ]
-  }
-]
+//Event listeners for buttons
 
-//Quiz Timer//
-//var count = 15;
-//var timer = setInterval(function() {
-  //console.log(count);
-  //count--;
-  //if(count === 0) {
-    //stopInterval()
-  //}
-//}, 1000);
+startQuizBtn.addEventListener("click", startQuiz);
+choiceA.addEventListener("click", chooseA);
+choiceB.addEventListener("click", chooseB);
+choiceC.addEventListener("click", chooseC);
+choiceD.addEventListener("click", chooseD);
 
-//var stopInterval = function() {
-  //console.log('time is up!');
-  //clearInterval(timer);
-//}
+submitInitialBtn.addEventListener("click", function(event){ 
+  storeHighScores(event);
+});
+
+viewHighScore.addEventListener("click", function(event) { 
+  showHighScores(event);
+});
+
+goBackBtn.addEventListener("click", function() {
+  startDiv.style.display = "block";
+  highScoreSection.style.display = "none";
+});
+
+clearHighScoreBtn.addEventListener("click", function(){
+  window.localStorage.removeItem("high scores");
+  listOfHighScores.innerHTML = "High Scores Cleared!";
+  listOfHighScores.setAttribute("style", "font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;")
+});
