@@ -4,6 +4,10 @@ const questionBoxElement =document.getElementById ('questionbox')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-btns')
 
+var summary = document.getElementById("summary");
+var submitInitialBtn = document.getElementById("submitInitialBtn");
+var initialInput = document.getElementById("initialInput");
+
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startQuiz)
@@ -65,15 +69,23 @@ function chooseAnswer (e) {
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
-    element.classList.add('correct')
+    element.classList.add('correct');
   } else {
-    element.classList.add('incorrect')
+    element.classList.add('incorrect');
   } 
 }
 
 function clearStatusClass(element) {
   element.classList.remove('correct')
   element.classList.remove('incorrect')
+}
+
+function storeHighScores(event) {
+  event.preventDefault();
+  if (initialInput.value === "") {
+    alert("Please enter your initials!");
+    return;
+  }
 }
 
 const questions = [
