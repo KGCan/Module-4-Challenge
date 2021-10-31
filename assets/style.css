@@ -35,12 +35,16 @@ a:hover {
     color: #99B8BF;
 }
 
-#btn0, #btn1, #btn2, #btn3 {
+#btn0, #btn1, #btn2, #btn3, #start-quiz-button, #submitInitialBtn {
     border: 2px solid black;
     background-color:rgb(201, 234, 247);
     border-radius: 5px;
     padding: 5px, 10px;
     outline: none;
+}
+
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover, #start-quiz-button:hover, #submitInitialBtn:hover {
+    border-color: rgb(255, 0, 212);
 }
 
 .btn:focus, .btn:active, .btn:visited {
