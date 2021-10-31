@@ -28,12 +28,16 @@
 
 # GitHub Repository URL:
 
+https://github.com/KGCan/Module-4-Challenge.git
+
 # Website URL:
+
+https://kgcan.github.io/Module-4-Challenge/
 
 # Screenshot:
 
  ## Resources Used to complete the project:
- 
+
 * google.com
 * codingninjas.com
 * dev.to
