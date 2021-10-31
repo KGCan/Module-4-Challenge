@@ -1,4 +1,4 @@
- //Quiz Questions & answers and correct answer
+ //Quiz Questions & answers
  const questions = [
   {
       question: "Inside which HTML element do we put the JavaScript?",
