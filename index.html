@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
-
-    <!-- linking css-->
+    <!-- link to css-->
     <link rel="stylesheet" href="./assets/style.css">
-
 </head>
 <body>
-    <!-- main content -->
-    <div class="main">
-
-        <!--link to highscores and timer -->
+    <!--main quiz content-->
+    <div class="quizbox">
+        <!--highscores and timer display-->
         <div class="tracking">
             <div>
                 <a href="#" id="viewHighScore">View High Scores</a>
@@ -23,17 +20,15 @@
             </div>
             <div id="timesUp" style="display: none;">Time's Up!</div>
         </div>
-
         <div id="quizbox">
               <main>
-                  <!--start screen  -->
+                  <!--quiz description & start button-->
                   <div id="start">
                       <h1>Coding Quiz Challenge</h1>
                       <p>How well do you know JavaScript? Answer the following questions to test your knowledge! Try to answer the questions within the time limit.  Be aware, incorrect answers subtract ten seconds from your time remaining.</p>
                       <button type="button" id="start-quiz-button">Start Quiz</button>
                   </div>
-
-                  <!--quiz div  -->
+                  <!--display questions and answers for quiz-->
                   <div id="questionDiv" style="display: none;">
                     <p id="questionTitle"></p>
                     <div>
@@ -45,8 +40,7 @@
                         <p id="answerCheck" style="display: none;"></p>
                     </div>
                   </div>
-
-                  <!-- score div -->
+                  <!--summary of final score and box to enter initials-->
                     <div id="summary" style="display: none;">
                         <div></div>
                         <div>
@@ -59,25 +53,20 @@
                         </div>
                     <div></div>
                 </div>
-
-                <!-- highscores section -->
+                <!--high scores display-->
                 <div id="highScoreSection" style="display: none;">
-                    <h2>High Scores</h2>                   
-                    
+                    <h2>High Scores</h2>                                   
                     <div id="listOfHighScores"></div>
-
-                    <!-- append each highscore as new paragraph here -->
+                    <!--options for highscores, go back to quiz or clear-->
                     <p>
                         <button type="submit" id="goBackBtn">Go Back</button>
                         <button type="submit" id="clearHighScoreBtn">Clear High Scores</button>
-                    </p>
-                    
+                    </p>                   
                 </div>
               </main>
         </div>
     </div>
-
-    <!-- linking js -->
+    <!-- link to js -->
     <script src="./assets/script.js"></script>
 </body>
 </html>

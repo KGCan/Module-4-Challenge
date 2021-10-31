@@ -1,3 +1,7 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
 body {
     background-color: rgb(40, 125, 158); 
     padding: 0;
@@ -8,23 +12,27 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.quizbox {
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 8px;    
 }
 
 h1, 
 h2 {
-    color: whitesmoke;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    color: rgb(40, 125, 158);
 }
 
 a {
-    color: orange;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    color: black;
 }
 
 a:hover {
     color: #99B8BF;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .btn:focus, .btn:active, .btn:visited {
@@ -33,27 +41,19 @@ a:hover {
 }
 
 #finalScore {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
 }
 
 span {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black
-}
-
-p {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 #questionTitle {
     font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white
 }
 
 #answerCheck {
     font-style: italic;
     color: black;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
