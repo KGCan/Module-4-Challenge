@@ -35,6 +35,14 @@ a:hover {
     color: #99B8BF;
 }
 
+#btn0, #btn1, #btn2, #btn3 {
+    border: 2px solid black;
+    background-color:rgb(201, 234, 247);
+    border-radius: 5px;
+    padding: 5px, 10px;
+    outline: none;
+}
+
 .btn:focus, .btn:active, .btn:visited {
     outline: none !important;
     box-shadow: none !important;
